@@ -81,15 +81,13 @@ def demo():
     # Read a frame from the stream
     orig_image = cv2.imread('img/1.jpg')
     orig_image = cv2.resize(orig_image, (600, 400), interpolation = cv2.INTER_CUBIC)
-    final_frame = orig_image.copy()
-
     temp_boxes, _ = fd.inference(orig_image)
 
     # Find landmarks of each face
     temp_resized_marks = fa.get_landmarks(orig_image, temp_boxes)
 
     for bbox_I, landmark_I in zip(temp_boxes, temp_resized_marks):
-        roll, pitch, yaw, _ = estimatePose(final_frame, landmark_I)
+        roll, pitch, yaw, _ = estimatePose(orig_image, landmark_I)
 
         print("roll:", roll, " pitch:", pitch, "yaw:", yaw)
 
