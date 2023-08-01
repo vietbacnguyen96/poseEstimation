@@ -85,48 +85,13 @@ def demo():
 
     temp_boxes, _ = fd.inference(orig_image)
 
-    # Draw boundary boxes around faces
-    # draw_box(final_frame, temp_boxes, color=(125, 255, 125))
-
     # Find landmarks of each face
     temp_resized_marks = fa.get_landmarks(orig_image, temp_boxes)
 
-
-    # Draw landmarks of each face
     for bbox_I, landmark_I in zip(temp_boxes, temp_resized_marks):
         roll, pitch, yaw, _ = estimatePose(final_frame, landmark_I)
-        # cv2.putText(final_frame, 'Roll: {0}'.format(roll), (20, 100), cv2.FONT_HERSHEY_DUPLEX, 1, (255, 255, 0), 1, cv2.LINE_AA)
-        # cv2.putText(final_frame, 'Pitch: {0}'.format(pitch), (20, 130), cv2.FONT_HERSHEY_DUPLEX, 1, (255, 255, 0), 1, cv2.LINE_AA)
-        # cv2.putText(final_frame, 'Yaw: {0}'.format(yaw), (20, 160), cv2.FONT_HERSHEY_DUPLEX, 1, (255, 255, 0), 1, cv2.LINE_AA)
 
-        # draw_landmark(final_frame, landmark_I, color=(125, 255, 125))
         print("roll:", roll, " pitch:", pitch, "yaw:", yaw)
-        # Show rotated face image
-        # xmin, ymin, xmax, ymax = int(bbox_I[0]), int(bbox_I[1]), int(bbox_I[2]), int(bbox_I[3])
-        # xmin -= extend_pixel
-        # xmax += extend_pixel
-        # ymin -= 2 * extend_pixel
-        # ymax += extend_pixel
-
-        # xmin = 0 if xmin < 0 else xmin
-        # ymin = 0 if ymin < 0 else ymin
-        # xmax = frame_width if xmax >= frame_width else xmax
-        # ymax = frame_height if ymax >= frame_height else ymax
-
-        # face_I = orig_image[ymin:ymax, xmin:xmax]
-        # face_I = align_face(face_I, landmark_I[34], landmark_I[88])
-
-        # cv2.imshow('Rotated raw face image', face_I)
-        # if cv2.waitKey(1) & 0xFF == ord('q'):
-        #     break
-    # cv2.imshow('', final_frame)
-    # # Waits for a keystroke
-    # cv2.waitKey(0)  
-    
-    # # Destroys all the windows created
-    # cv2.destroyAllwindows() 
-
-    
 
 if __name__ == '__main__':
     # getPose()
