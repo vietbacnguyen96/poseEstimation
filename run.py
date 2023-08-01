@@ -79,7 +79,7 @@ def getPose():
 
 def demo():
     # Read a frame from the stream
-    orig_image = cv2.imread('img/1.JPG')
+    orig_image = cv2.imread('img/1.jpg')
     orig_image = cv2.resize(orig_image, (600, 400), interpolation = cv2.INTER_CUBIC)
     final_frame = orig_image.copy()
 
